@@ -131,26 +131,40 @@ Se ha reconstruido la aplicación tres veces, manteniendo el objetivo de obtener
 
 Las reconstrucciones se han desarrollado en `develop`, dejando identificables los avances y los reinicios mediante commits. `master` se reserva para la versión final evaluable.
 
-## 7. Verificación manual
+## 7. Verificación
 
-No se utiliza JUnit: se opta por la **verificación manual documentada** que permite el enunciado.
+Se ha comprobado el funcionamiento de la aplicación mediante una ejecución real y una serie de pruebas manuales automatizadas, sin utilizar JUnit.
 
-**Evidencia disponible:**
+### Ejecución con RandomUser
 
-- **Repetición 1 — ejecución normal:** se obtuvo un JSON con 20 usuarios y `metadata.count = 20`.
-- **Repetición 2 — ejecución completa no confirmada:** la petición HTTP terminó con `java.net.ConnectException: Connection timed out`; también falló el acceso al servicio desde el navegador.
-- **Repetición 3 — ejecución completa pendiente:** no se ha confirmado una ejecución satisfactoria tras incorporar el campo `email`.
+Se ejecutó `Main` desde IntelliJ IDEA, realizando una petición HTTP a la API RandomUser.
 
-**Comprobaciones pendientes antes de la entrega final:**
+La ejecución finalizó correctamente (`exit code 0`) y generó el archivo `users.json` con:
 
-- [ ] Ejecutar la última versión y comprobar la generación de `users.json`.
-- [ ] Comprobar, con entrada controlada, un registro inválido o incompleto y su descarte.
-- [ ] Comprobar una entrada con `results` vacío.
-- [ ] Volver a interpretar mediante Gson el JSON de salida.
-- [ ] Comparar una salida real con el JSON esperado de un ejemplo controlado.
-- [ ] Comprobar que usar un `Reader` de archivo o memoria no exige modificar el parser ni la transformación.
+- 20 usuarios, cada uno con nombre, fecha de nacimiento y correo electrónico.
+- Fechas representadas en formato ISO 8601.
+- Un bloque `metadata` con `count: 20`, coincidente con el número de usuarios generados.
 
-Se actualizará este apartado con los resultados observados cuando se realicen las comprobaciones. No se consideran superadas las pruebas pendientes.
+### Verificaciones adicionales
+
+Se utilizó la clase `ManualVerification`, ubicada en `src/test/java`, para comprobar el procesamiento mediante datos JSON controlados, sin depender de Internet.
+
+| Comprobación | Resultado |
+|---|---|
+| Interpretación y procesamiento de entradas válidas | OK |
+| Descarte de registros con datos incorrectos | OK |
+| Tratamiento de una lista de resultados vacía | OK |
+| Detección de JSON sintácticamente malformado | OK |
+| Generación y posterior interpretación del JSON de salida | OK |
+| Lectura equivalente desde fichero y memoria | OK |
+
+Todas las verificaciones finalizaron correctamente (`exit code 0`).
+
+### Reproducción
+
+Para repetir las comprobaciones, basta con ejecutar el método `main()` de `ManualVerification` desde IntelliJ IDEA. No se requieren dependencias adicionales.
+
+Para verificar la conexión HTTP y la generación del archivo `users.json`, se debe ejecutar `Main`, teniendo acceso a Internet.
 
 ## 8. Git y GitHub
 
