@@ -4,6 +4,6 @@ import software.ulpgc.katas.application.domain.model.User;
 
 import java.util.List;
 
-public interface UserOutput {
+public interface UserWriter {
     void write(List<User> users);
 }

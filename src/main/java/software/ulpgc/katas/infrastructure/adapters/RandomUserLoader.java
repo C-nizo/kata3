@@ -1,7 +1,7 @@
 package software.ulpgc.katas.infrastructure.adapters;
 
 import software.ulpgc.katas.application.domain.model.User;
-import software.ulpgc.katas.application.ports.UserStore;
+import software.ulpgc.katas.application.ports.UserLoader;
 import software.ulpgc.katas.infrastructure.randomuser.UserDto;
 import software.ulpgc.katas.infrastructure.randomuser.UserMapper;
 import software.ulpgc.katas.infrastructure.randomuser.UserParser;
@@ -19,13 +19,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomUserStore implements UserStore {
+public class RandomUserLoader implements UserLoader {
     private final int size;
     private final UserParser parser = new UserParser();
     private final UserValidator validator = new UserValidator();
     private final UserMapper mapper = new UserMapper();
 
-    public RandomUserStore(int size) {
+    public RandomUserLoader(int size) {
         this.size = size;
     }
 
@@ -40,6 +40,16 @@ public class RandomUserStore implements UserStore {
         }
     }
 
+    private URI createUri() {
+        return URI.create("https://randomuser.me/api/?results=" + size);
+    }
+
+    private static HttpRequest createRequest(URI uri) {
+        return HttpRequest.newBuilder(uri)
+                .GET()
+                .build();
+    }
+
     private static HttpResponse<InputStream> sendRequest(HttpClient client, HttpRequest request) {
         try {
             return client.send(request, HttpResponse.BodyHandlers.ofInputStream());
@@ -49,16 +59,6 @@ public class RandomUserStore implements UserStore {
             Thread.currentThread().interrupt();
             throw new IllegalStateException("Petición interrumpida", e);
         }
-    }
-
-    private static HttpRequest createRequest(URI uri) {
-        return HttpRequest.newBuilder(uri)
-                .GET().
-                build();
-    }
-
-    private URI createUri() {
-        return URI.create("https://randomuser.me/api/?results=" + size);
     }
 
     private List<UserDto> parseResponse(HttpResponse<InputStream> response) {

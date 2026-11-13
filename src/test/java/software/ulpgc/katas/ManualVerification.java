@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import software.ulpgc.katas.application.domain.model.User;
-import software.ulpgc.katas.infrastructure.adapters.JsonUserOutput;
+import software.ulpgc.katas.infrastructure.adapters.JsonUserWriter;
 import software.ulpgc.katas.infrastructure.randomuser.*;
 
 import java.io.Reader;
@@ -72,7 +72,7 @@ public class ManualVerification {
 
         Path output = Files.createTempFile("kata3-output-", ".json");
         try {
-            new JsonUserOutput(output).write(valid);
+            new JsonUserWriter(output).write(valid);
 
             try (Reader reader = Files.newBufferedReader(output)) {
                 JsonObject json = JsonParser.parseReader(reader)

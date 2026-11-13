@@ -4,6 +4,6 @@ import software.ulpgc.katas.application.domain.model.User;
 
 import java.util.List;
 
-public interface UserStore {
+public interface UserLoader {
     List<User> load();
 }

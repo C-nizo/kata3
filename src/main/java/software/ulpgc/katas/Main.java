@@ -1,19 +1,19 @@
 package software.ulpgc.katas;
 
-import software.ulpgc.katas.application.ports.UserOutput;
-import software.ulpgc.katas.application.ports.UserStore;
+import software.ulpgc.katas.application.ports.UserWriter;
+import software.ulpgc.katas.application.ports.UserLoader;
 import software.ulpgc.katas.application.usecases.ProcessUsersUseCase;
-import software.ulpgc.katas.infrastructure.adapters.JsonUserOutput;
-import software.ulpgc.katas.infrastructure.adapters.RandomUserStore;
+import software.ulpgc.katas.infrastructure.adapters.JsonUserWriter;
+import software.ulpgc.katas.infrastructure.adapters.RandomUserLoader;
 
 import java.nio.file.Path;
 
 public class Main {
     static void main() {
-        UserStore store = new RandomUserStore(20);
-        UserOutput output = new JsonUserOutput(Path.of("users.json"));
+        UserLoader loader = new RandomUserLoader(20);
+        UserWriter writer = new JsonUserWriter(Path.of("users.json"));
 
-        ProcessUsersUseCase useCase = new ProcessUsersUseCase(store, output);
+        ProcessUsersUseCase useCase = new ProcessUsersUseCase(loader, writer);
 
         useCase.execute();
     }

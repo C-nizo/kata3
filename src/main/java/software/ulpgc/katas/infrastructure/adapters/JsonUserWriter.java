@@ -2,7 +2,7 @@ package software.ulpgc.katas.infrastructure.adapters;
 
 import com.google.gson.*;
 import software.ulpgc.katas.application.domain.model.User;
-import software.ulpgc.katas.application.ports.UserOutput;
+import software.ulpgc.katas.application.ports.UserWriter;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -11,11 +11,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class JsonUserOutput implements UserOutput {
+public class JsonUserWriter implements UserWriter {
     private final Path path;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public JsonUserOutput(Path path) {
+    public JsonUserWriter(Path path) {
         this.path = path;
     }
 

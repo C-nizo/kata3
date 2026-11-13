@@ -1,22 +1,22 @@
 package software.ulpgc.katas.application.usecases;
 
 import software.ulpgc.katas.application.domain.model.User;
-import software.ulpgc.katas.application.ports.UserOutput;
-import software.ulpgc.katas.application.ports.UserStore;
+import software.ulpgc.katas.application.ports.UserWriter;
+import software.ulpgc.katas.application.ports.UserLoader;
 
 import java.util.List;
 
 public class ProcessUsersUseCase {
-    private final UserStore store;
-    private final UserOutput output;
+    private final UserLoader loader;
+    private final UserWriter writer;
 
-    public ProcessUsersUseCase(UserStore store, UserOutput output) {
-        this.store = store;
-        this.output = output;
+    public ProcessUsersUseCase(UserLoader loader, UserWriter writer) {
+        this.loader = loader;
+        this.writer = writer;
     }
 
     public void execute() {
-        List<User> users = store.load();
-        output.write(users);
+        List<User> users = loader.load();
+        writer.write(users);
     }
 }
