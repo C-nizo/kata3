@@ -1,0 +1,14 @@
+{
+  "results": [
+    {
+      "name": {"first": "Ana", "last": "Pérez"},
+      "dob": {"date": "1990-05-14T10:30:00.000Z"},
+      "email": "ana@example.com"
+    },
+    {
+      "name": {"first": "Luis", "last": "Gómez"},
+      "dob": {"date": "1985-11-03T08:15:00.000Z"},
+      "email": "luis@example.org"
+    }
+  ]
+}

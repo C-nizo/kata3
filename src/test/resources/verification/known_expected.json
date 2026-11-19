@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "name": "Ana Pérez",
+      "birthday": "1990-05-14T10:30:00Z",
+      "email": "ana@example.com"
+    },
+    {
+      "name": "Luis Gómez",
+      "birthday": "1985-11-03T08:15:00Z",
+      "email": "luis@example.org"
+    }
+  ],
+  "metadata": {
+    "count": 2
+  }
+}

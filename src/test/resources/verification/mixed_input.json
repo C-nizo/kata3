@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "name": {"first": "Ana", "last": "Pérez"},
+      "dob": {"date": "1990-05-14T10:30:00.000Z"},
+      "email": "ana@example.com"
+    },
+    {
+      "name": {"first": "Pedro", "last": " "},
+      "dob": {"date": "2000-01-01T00:00:00Z"},
+      "email": "pedro@example.com"
+    },
+    {
+      "name": {"first": "Lara", "last": "López"},
+      "dob": {"date": "fecha-inválida"},
+      "email": "lara@example.com"
+    },
+    {
+      "name": {"first": "Luis", "last": "Gómez"},
+      "dob": {"date": "1985-11-03T08:15:00.000Z"},
+      "email": "luis@example.org"
+    },
+    {
+      "name": {"first": "Nuria", "last": "Díaz"},
+      "dob": {"date": "1997-08-20T13:00:00Z"},
+      "email": "correo-sin-arroba"
+    }
+  ]
+}
